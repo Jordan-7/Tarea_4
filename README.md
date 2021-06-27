@@ -54,7 +54,7 @@ provincias <-
   
  
  
-## Datos de especies filtradas
+### Datos de especies filtradas
 
 
 primates <-
@@ -113,7 +113,7 @@ cebu <- primates %>%
   
   
   
-  ## Datos raster
+  ### Datos raster
  
  
 alt <- getData(
@@ -161,7 +161,7 @@ sum(with(primates,species == "Ateles geoffroyi"))
 sum(with(primates,species == "Cebus capucinus"))
 
 
-## Grafico pastel
+### Grafico pastel
 
 nespecies <- c(1994, 453, 599, 1463)
 
@@ -268,23 +268,19 @@ pcebu <- paste0("<b>", "Especie: ","</b>",
 
  ### Mapa
   
-  primates %>%
+ primates %>%
     leaflet() %>%
     addProviderTiles(providers$OpenStreetMap.Mapnik, 
                      group = "OpenStreetMap") %>%
-                     
     addProviderTiles(providers$Stamen.TonerLite, 
                      group = "Stamen Toner Lite") %>%
-                     
     addProviderTiles(providers$Esri.WorldImagery, 
                      group = "Imágenes de ESRI") %>%
-                     
     addRasterImage(
       altitud, 
       colors = rcol, 
       opacity = 0.8,
       group = "Altitud") %>%
-      
     addCircleMarkers(
       data = alou,
       stroke = F,
@@ -294,7 +290,6 @@ pcebu <- paste0("<b>", "Especie: ","</b>",
       popup = palou,
       group = ("Alouatta palliata")
     ) %>%
-    
     addCircleMarkers(
       data = saimi,
       stroke = F,
@@ -304,7 +299,6 @@ pcebu <- paste0("<b>", "Especie: ","</b>",
       popup = psaimi,
       group = "Saimiri oerstedii"
     ) %>%
-    
     addCircleMarkers(
       data = ate,
       stroke = F,
@@ -314,7 +308,6 @@ pcebu <- paste0("<b>", "Especie: ","</b>",
       popup = pate,
       group = "Ateles geoffroyi"
     ) %>%
-    
     addCircleMarkers(
       data = cebu,
       stroke = F,
@@ -324,7 +317,6 @@ pcebu <- paste0("<b>", "Especie: ","</b>",
       popup = pcebu,
       group = "Cebus capucinus"
     ) %>%
-    
     addLayersControl(
       baseGroups = c("OpenStreetMap", "Stamen Toner Lite", 
                      "Imágenes de ESRI"),
@@ -332,14 +324,7 @@ pcebu <- paste0("<b>", "Especie: ","</b>",
                         "Ateles geoffroyi", "Cebus capucinus"
                         ,"Altitud")
     ) %>%
-    
     addMiniMap(tiles = providers$Stamen.OpenStreetMap.Mapnik,
                position = "bottomleft",
                toggleDisplay = TRUE
     )
-
-
-
-
-
-
