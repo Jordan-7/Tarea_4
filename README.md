@@ -17,3 +17,21 @@ library(leaflet)
 library(plotly)
 
 library(DT)
+
+
+
+primates <-
+  st_read(
+    "https://raw.githubusercontent.com/gf0604-procesamientodatosgeograficos/2021i-datos/main/gbif/primates-cr-registros.csv",
+    options = c(
+      "X_POSSIBLE_NAMES=decimalLongitude",
+      "Y_POSSIBLE_NAMES=decimalLatitude"
+    ),
+    quiet = TRUE
+  )
+  
+  
+  
+  
+  
+  
