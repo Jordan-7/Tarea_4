@@ -5,9 +5,15 @@ En este trabajo se presentara la linea de codigo que muestra los registro de pri
 ## Carga de datos 
 
 library(sf)
+
 library(raster)
+
 library(dplyr)
+
 library(spData)
+
 library(leaflet)
+
 library(plotly)
+
 library(DT)
