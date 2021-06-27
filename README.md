@@ -54,7 +54,7 @@ provincias <-
   
  
  
-Datos de especies filtradas
+## Datos de especies filtradas
 
 
 primates <-
@@ -113,7 +113,7 @@ cebu <- primates %>%
   
   
   
- Datos raster
+  ## Datos raster
  
  
 alt <- getData(
@@ -130,6 +130,7 @@ altitud <-
   alt %>%
   crop(provincias) %>%
   mask(provincias)
+  
   
   
   
