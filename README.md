@@ -32,6 +32,104 @@ primates <-
   
   
   
+cantones <-
+  st_read(
+    "https://raw.githubusercontent.com/gf0604-procesamientodatosgeograficos/2021i-datos/main/ign/delimitacion-territorial-administrativa/cr_cantones_simp_wgs84.geojson",
+  quiet = TRUE
+    )
+  
+  
+st_crs(primates) = 4326
+  
+  
+  
+provincias <-
+  st_read(
+    "https://raw.githubusercontent.com/gf0604-procesamientodatosgeograficos/2021i-datos/main/ign/delimitacion-territorial-administrativa/cr_provincias_simp_wgs84.geojson",
+    quiet = TRUE
+  )
+  
+  
+ st_crs(cantones) = 4326
+  
+ 
+ 
+Datos de especies filtradas
+
+
+primates <-
+  primates %>%
+  st_join(cantones["canton"])
+  
+  
+  
+primates <-
+  primates %>%
+  st_join(provincias["provincia"])
+  
+  
+  
+alou <- primates %>%
+  select(species,
+         provincia,
+         canton,
+         eventDate,
+         decimalLongitude,
+         decimalLatitude) %>%
+  filter(species == "Alouatta palliata")
+  
+  
+  
+saimi <- primates %>%
+  select(species,
+         provincia,
+         canton,
+         eventDate,
+         decimalLongitude,
+         decimalLatitude) %>%
+  filter(species == "Saimiri oerstedii")
+  
+  
+  
+ate <- primates %>%
+  select(species,
+         provincia,
+         canton,
+         eventDate,
+         decimalLongitude,
+         decimalLatitude) %>%
+  filter(species == "Ateles geoffroyi")
+  
+  
+  
+cebu <- primates %>%
+  select(species,
+         provincia,
+         canton,
+         eventDate,
+         decimalLongitude,
+         decimalLatitude) %>%
+  filter(species == "Cebus capucinus")
+  
+  
+  
+ Datos raster
+ 
+ 
+alt <- getData(
+  "worldclim",
+  var = "alt",
+  res = .5,
+  lon = -84,
+  lat = 10
+)
+
+
+
+altitud <-
+  alt %>%
+  crop(provincias) %>%
+  mask(provincias)
   
   
   
